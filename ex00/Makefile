@@ -1,4 +1,4 @@
-NAME := brainz
+NAME := fixed
 CC := c++
 CCFLAGS := -Werror -Wextra -Wall
 
