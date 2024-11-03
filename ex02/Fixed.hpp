@@ -6,7 +6,7 @@
 /*   By: adprzyby <adprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:40:22 by adprzyby          #+#    #+#             */
-/*   Updated: 2024/11/03 15:40:24 by adprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:35:24 by adprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,42 @@
 
 class Fixed {
 	public:
-		Fixed() : value(0) {
-			std::cout << "Default constructor called\n"; 
-		}
-		Fixed( const int i) : value(i << bits) {
-			std::cout << "Int constructor called\n";
-		}
-		Fixed( const float f) : value(static_cast<int>(roundf(f * (1 << bits)))) {
-			std::cout << "Float constructor called\n";
-		}
-		Fixed(const Fixed&other) : value(other.value) {
-			std::cout << "Copy constructor called\n";
-		}
+		Fixed() : value(0) {}
+		Fixed( const int i) : value(i << bits) {}
+		Fixed( const float f) : value(static_cast<int>(roundf(f * (1 << bits)))) {}
+		Fixed(const Fixed&other) : value(other.value) {}
 		Fixed& operator=(const Fixed& other) {
-			std::cout << "Copy assignment operator called\n";
 			if (this == &other) {
 				return *this;
 			}
 			value = other.value;
 			return (*this);
 		}
-		~Fixed() {
-			std::cout << "Destructor has been called\n";
-		}
+		~Fixed() {}
 		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+		
+		bool operator>(const Fixed& other) const;		
+		bool operator<(const Fixed& other) const;		
+		bool operator>=(const Fixed& other) const;
+		bool operator<=(const Fixed& other) const;
+		bool operator==(const Fixed& other) const;
+		bool operator!=(const Fixed& other) const;
+		
+		int operator+(const Fixed& other) const;
+		int operator-(const Fixed& other) const;
+		int operator*(const Fixed& other) const;
+		int operator/(const Fixed& other) const;
+
+		Fixed& operator++();
+		Fixed operator++(int);
+		Fixed& operator--();
+		Fixed operator--(int);
+
+		static const Fixed& min(const Fixed& a, const Fixed& b);
+		static Fixed& min(Fixed& a, Fixed& b);
+		static const Fixed& max(const Fixed& a, const Fixed& b);
+		static Fixed& max(Fixed& a, Fixed& b);
+		
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
 		float toFloat( void ) const;
