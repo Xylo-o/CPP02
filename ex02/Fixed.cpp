@@ -6,7 +6,7 @@
 /*   By: adprzyby <adprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:40:13 by adprzyby          #+#    #+#             */
-/*   Updated: 2024/11/03 17:43:44 by adprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/03 18:09:48 by adprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 const int Fixed::bits = 8;
 
-Fixed::Fixed() {}
+Fixed::Fixed() : value (0) {}
 Fixed::Fixed( const int i) : value(i << bits) {}
 Fixed::Fixed( const float f) : value(static_cast<int>(roundf(f * (1 << bits)))) {}
 Fixed::Fixed(const Fixed&other) : value(other.value) {}
@@ -68,17 +68,17 @@ bool Fixed::operator!=(const Fixed& other) const {
 	return this->value != other.value;
 }
 
-int Fixed::operator+(const Fixed& other) const {
-	return this->value + other.value;
+Fixed Fixed::operator+(const Fixed& other) const {
+	return Fixed(this->toFloat() + other.toFloat());
 }
-int Fixed::operator-(const Fixed& other) const {
-	return this->value - other.value;
+Fixed Fixed::operator-(const Fixed& other) const {
+	return Fixed(this->toFloat() - other.toFloat());
 }
-int Fixed::operator*(const Fixed& other) const {
-	return this->value * other.value;
+Fixed Fixed::operator*(const Fixed& other) const {
+	return Fixed(this->toFloat() * other.toFloat());
 }
-int Fixed::operator/(const Fixed& other) const {
-	return this->value / other.value;
+Fixed Fixed::operator/(const Fixed& other) const {
+	return Fixed(this->toFloat() / other.toFloat());
 }
 
 Fixed& Fixed::operator++() {
@@ -86,16 +86,18 @@ Fixed& Fixed::operator++() {
 	return *this;
 }
 Fixed Fixed::operator++(int) {
+	Fixed tmp = *this;
 	value++;
-	return this->value;
+	return tmp;
 }
 Fixed& Fixed::operator--() {
 	--value;
 	return *this;
 }
 Fixed Fixed::operator--(int) {
+	Fixed tmp = *this;
 	value--;
-	return this->value;
+	return tmp;
 }
 
 const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
