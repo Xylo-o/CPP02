@@ -6,7 +6,7 @@
 /*   By: adprzyby <adprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:40:22 by adprzyby          #+#    #+#             */
-/*   Updated: 2024/11/03 17:35:24 by adprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:39:39 by adprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,12 @@
 
 class Fixed {
 	public:
-		Fixed() : value(0) {}
-		Fixed( const int i) : value(i << bits) {}
-		Fixed( const float f) : value(static_cast<int>(roundf(f * (1 << bits)))) {}
-		Fixed(const Fixed&other) : value(other.value) {}
-		Fixed& operator=(const Fixed& other) {
-			if (this == &other) {
-				return *this;
-			}
-			value = other.value;
-			return (*this);
-		}
-		~Fixed() {}
+		Fixed();
+		Fixed( const int i);
+		Fixed( const float f);
+		Fixed(const Fixed&other);
+		Fixed& operator=(const Fixed& other);
+		~Fixed();
 		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 		
 		bool operator>(const Fixed& other) const;		
