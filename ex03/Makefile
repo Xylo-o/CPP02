@@ -1,4 +1,4 @@
-NAME := fixed
+NAME := point
 CC := c++
 CCFLAGS := -Werror -Wextra -Wall -std=c++98
 
