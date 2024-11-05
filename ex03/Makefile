@@ -4,6 +4,8 @@ CCFLAGS := -Werror -Wextra -Wall -std=c++98
 
 SRC := main.cpp \
 	Fixed.cpp \
+	Point.cpp \
+	bsp.cpp \
 
 OBJ := $(SRC:.cpp=.o)
 
