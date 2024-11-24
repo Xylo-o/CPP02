@@ -6,7 +6,7 @@
 /*   By: adprzyby <adprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:40:13 by adprzyby          #+#    #+#             */
-/*   Updated: 2024/11/03 18:09:48 by adprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:52:47 by adprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ Fixed::Fixed() : value (0) {}
 Fixed::Fixed( const int i) : value(i << bits) {}
 Fixed::Fixed( const float f) : value(static_cast<int>(roundf(f * (1 << bits)))) {}
 Fixed::Fixed(const Fixed&other) : value(other.value) {}
-Fixed&Fixed::operator=(const Fixed& other) {
+const Fixed& Fixed::operator=(const Fixed& other) {
 	if (this == &other) {
 		return *this;
 	}
 	value = other.value;
-	return (*this);
+	return *this;
 }
 Fixed::~Fixed() {}
 

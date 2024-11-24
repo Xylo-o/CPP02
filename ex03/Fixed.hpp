@@ -6,7 +6,7 @@
 /*   By: adprzyby <adprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:40:22 by adprzyby          #+#    #+#             */
-/*   Updated: 2024/11/03 18:05:39 by adprzyby         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:44:23 by adprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 class Fixed {
 	public:
 		Fixed();
-		Fixed( const int i);
-		Fixed( const float f);
+		Fixed(const int i);
+		Fixed(const float f);
 		Fixed(const Fixed&other);
-		Fixed& operator=(const Fixed& other);
+		const Fixed& operator=(const Fixed& other);
 		~Fixed();
 		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 		
